@@ -4,13 +4,21 @@ function dbInstance(): PDO{
     static $db;
 
     if($db === null){
-        $db = new PDO('mysql:host=localhost;dbname=hw4', 'root', '',[ PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC]);
+        $db = new PDO('mysql:host='.DB_HOST.';dbname='. DB_NAME, DB_USER, DB_PASS,[ PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC]);
     }
 
     $db->exec('SET NAMES UTF8');
     return $db;
 }
 
+//обертка над запросом к БД, пример использования ниже
+// $sql = "SELECT * FROM article ORDER BY dt_add DESC";
+// $qwery = dbQwery($sql);
+// $article = $qwery->fetchAll();
+// --------------------------------
+// $sql = "SELECT * FROM article WHERE id_article = :id";
+// $qwery = dbQwery($sql, ['id'=> $id]);
+// $article = $qwery->fetch();
 
 function dbQwery(string $sql, array $params = []):PDOStatement{
     $db = dbInstance();

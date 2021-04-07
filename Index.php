@@ -1,10 +1,6 @@
 <?php
 
-
-TEST STRING
-
-=======
-include_once('core/system.php');
+include_once('ini.php');
 
 
 $cname = $_GET['c'] ?? 'index';
