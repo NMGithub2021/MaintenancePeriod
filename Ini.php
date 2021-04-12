@@ -1,4 +1,5 @@
 <?php
+ const HOST = 'http://';
 const BASE_URL = '/';
 
 const DB_HOST = 'localhost';
